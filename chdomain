@@ -12,13 +12,24 @@ DOMAIN=$1
 # ANSI color codes
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-# Run whois command and check for different unregistered indicators
+# Run whois command and store the output
 WHOIS_OUTPUT=$(whois $DOMAIN)
 
+# Check if the domain is available
 if echo "$WHOIS_OUTPUT" | grep -qiE "No match for|NOT FOUND|No entries found|Domain not found"; then
   echo -e "Domain ${GREEN}$DOMAIN${NC} is available for registration!"
 else
   echo -e "Domain ${RED}$DOMAIN${NC} is already registered."
+
+  # Extract the expiration date
+  EXPIRATION_DATE=$(echo "$WHOIS_OUTPUT" | grep -iE "Expiration Date|Expiry Date|renewal date" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+  
+  if [ -n "$EXPIRATION_DATE" ]; then
+    echo -e "Expiration Date: ${YELLOW}$EXPIRATION_DATE${NC}"
+  else
+    echo -e "Expiration Date: ${YELLOW}Not available${NC}"
+  fi
 fi
