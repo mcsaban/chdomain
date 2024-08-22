@@ -31,7 +31,7 @@ A simple bash script to check if a domain is available for registration using th
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/mcsaban/chdomain.git
-    cd domain-availability-checker
+    cd chdomain
     ```
 
 2. **Make the script executable**:
