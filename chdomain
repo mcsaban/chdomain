@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Check if the domain name is provided
+if [ -z "$1" ]; then
+  echo "Usage: ./chdomain domainname.com"
+  exit 1
+fi
+
+# Domain name to check
+DOMAIN=$1
+
+# ANSI color codes
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Run whois command and check for different unregistered indicators
+WHOIS_OUTPUT=$(whois $DOMAIN)
+
+if echo "$WHOIS_OUTPUT" | grep -qiE "No match for|NOT FOUND|No entries found|Domain not found"; then
+  echo -e "Domain ${GREEN}$DOMAIN${NC} is available for registration!"
+else
+  echo -e "Domain ${RED}$DOMAIN${NC} is already registered."
+fi
