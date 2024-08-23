@@ -7,6 +7,7 @@ A simple bash script to check if a domain is available for registration using th
 - Quickly check the availability of a domain name.
 - Supports various TLDs by matching common `whois` responses.
 - Outputs the domain name in green if available and in red if already registered.
+- Displays the expiration date of registered domains in yellow, if available.
 
 ## Prerequisites
 
@@ -30,8 +31,8 @@ A simple bash script to check if a domain is available for registration using th
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/mcsaban/chdomain.git
-    cd chdomain
+    git clone https://github.com/yourusername/domain-availability-checker.git
+    cd domain-availability-checker
     ```
 
 2. **Make the script executable**:
