@@ -25,7 +25,7 @@ else
   echo -e "Domain ${RED}$DOMAIN${NC} is already registered."
 
   # Extract the expiration date
-  EXPIRATION_DATE=$(echo "$WHOIS_OUTPUT" | grep -iE "Expiration Date|Expiry Date|renewal date" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+  EXPIRATION_DATE=$(echo "$WHOIS_OUTPUT" | grep -iE "Expiration Date|Expiry Date|renewal date" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//' | sed 's/[[:space:]]*$//')
   
   if [ -n "$EXPIRATION_DATE" ]; then
     echo -e "Expiration Date: ${YELLOW}$EXPIRATION_DATE${NC}"
