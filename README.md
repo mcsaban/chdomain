@@ -1,7 +1,7 @@
 # Domain Availability Checker
 
 A simple bash script to check if a domain is available for registration using the `whois` command.
-![Alt text]([Example.png))
+![Alt text](Example.png))
 ## Features
 
 - Quickly check the availability of a domain name.
